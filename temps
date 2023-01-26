@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#
+# Parse all the data but only display the end point
+# Rather wastefull but the delay is acceptable 
+#
+
+parse_brifit.py /home/peter/tempBT.txt 1 1

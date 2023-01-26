@@ -1,0 +1,8 @@
+#!/bin/bash 
+
+logStr=$(echo $(/usr/local/bin/thermoBeacon.py  2> /dev/null))
+
+# The date string you get is rather obviously at the end of the
+# sampling period
+
+echo $(date) $logStr
