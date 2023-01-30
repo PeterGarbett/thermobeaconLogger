@@ -1,0 +1,17 @@
+#
+#	Schedule thermobeacon bluetooth monitoring 
+#	This is set to each half hour
+#
+#       This file needs to be on /etc/systemd/system/
+#
+
+[Unit]
+Description=Schedule thermoBeacon monitoring
+Requires=BTtemps.service
+
+[Timer]
+Unit=BTtemps.service
+OnCalendar=*:0/30
+
+[Install]
+WantedBy=timers.target

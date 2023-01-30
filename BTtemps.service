@@ -1,0 +1,16 @@
+#
+#	Run the script that ends up logging thermobeacons
+#
+#	This file needs to be on /etc/systemd/system/
+#
+[Unit]
+Description=ThermoBeacon monitoring
+Wants=BTtemps.timer
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/LogTemp
+
+[Install]
+WantedBy=multi-user.target
+
