@@ -70,9 +70,10 @@ def flttofixed(value):
     datum = datum.strip()
     val = float(datum)
     val = round(val, 2)
-    fmt = str(val)
 
-    fmt = fmt.ljust(6)
+# Make the decimal points line up
+
+    fmt=f'{val:9.2f}'
 
     return fmt
 
@@ -80,17 +81,19 @@ def flttofixed(value):
 def output(graph):
 
     for item in graph:
-        when = item[0]  # Literally when the values were measured
 
-        val1 = flttofixed(item[1])
-        val2 = flttofixed(item[2])
-        val3 = flttofixed(item[3])
-        val4 = flttofixed(item[4])
+        when = item[0]  # When the values were measured, which should always appear
 
-        outstr = "," + val1 + "," + val2 + "," + val3 + "," + val4
+# Now there are a variable number of items
+
+        outstr=""
+        for index in range(1,len(item)):
+            if 'None' in str(item[index]):  
+                outstr = outstr + "         "  # If no datum we need spacing
+            else:
+                outstr= outstr + str(flttofixed(item[index]))
 
         print(when, outstr)
-
 
 def usage():
     print("Usage: InputFile Parameter samples(last N)")
@@ -202,7 +205,7 @@ def massagerawdata(filename, dataItem, headerOnly, itemsRequired):
         datalist.append(datapoint)
 
     print(parametermeanings[dataItem - 1], "at locations")
-    print("\t\t", loc)
+    print("\t\t\t", loc)
 
     if not headerOnly:
         itemsRequired = min(itemsRequired, len(datalist))
