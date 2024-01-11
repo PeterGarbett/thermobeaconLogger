@@ -1,8 +1,14 @@
 #!/bin/bash
 
 #
-# Parse all the data but only display the end point
-# Rather wastefull but the delay is acceptable 
+# Parse the tail of the data
 #
 
-parse_brifit.py /home/peter/tempBT.txt 1 1
+tmp=$(mktemp)
+
+tail /home/peter/tempBT.txt > $tmp
+
+parse_brifit.py $tmp  1 1
+rm $tmp
+
+

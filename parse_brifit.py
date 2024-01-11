@@ -20,7 +20,6 @@ def cutstring(delimiter, record):
 
 
 def parse_measurement(DATE, record):
-
     datums = [DATE]
 
     delimiterStop = ")"
@@ -42,7 +41,6 @@ def parse_measurement(DATE, record):
 
 
 def findlocs(locdata):
-
     locations = set()
     for point in locdata:
         DAT = point.pop(0)
@@ -63,37 +61,38 @@ def findlocs(locdata):
 
 
 def flttofixed(value):
-
     # Need numeric values in fixed width
 
     datum = value
-    datum = datum.strip()
-    val = float(datum)
-    val = round(val, 2)
 
-# Make the decimal points line up
+    if datum is None:  # A problem
+        fmt = "---"  # Sidestep it..
+    else:
+        datum = datum.strip()
+        val = float(datum)
+        val = round(val, 2)
+        fmt = str(val)
 
-    fmt=f'{val:9.2f}'
+    fmt = fmt.ljust(6)
 
     return fmt
 
 
 def output(graph):
-
     for item in graph:
+        when = item[0]  # When the values were measured
 
-        when = item[0]  # When the values were measured, which should always appear
-
-# Now there are a variable number of items
-
-        outstr=""
-        for index in range(1,len(item)):
-            if 'None' in str(item[index]):  
-                outstr = outstr + "         "  # If no datum we need spacing
+        #   Format depending on how many items we find
+        #
+        outstr = ""
+        for number in range(len(item) - 1):
+            if number == 0:
+                outstr = outstr + flttofixed(item[number + 1])
             else:
-                outstr= outstr + str(flttofixed(item[index]))
+                outstr = outstr + " ,  " + flttofixed(item[number + 1])
 
         print(when, outstr)
+
 
 def usage():
     print("Usage: InputFile Parameter samples(last N)")
@@ -119,7 +118,6 @@ parametermeanings = [
 
 
 def validateargs(headerOnly):
-
     caller = sys.argv.pop(0)
     inputargs = sys.argv
 
@@ -158,7 +156,6 @@ outputData = True
 
 
 def massagerawdata(filename, dataItem, headerOnly, itemsRequired):
-
     resurrect = open(filename, "r")
     restored = resurrect.readlines()
     resurrect.close()
@@ -166,11 +163,14 @@ def massagerawdata(filename, dataItem, headerOnly, itemsRequired):
     dataset = []
 
     for measurement in restored:
-
         # Isolate the datestring by getting rid of everything that follows
         # a few choice phrases
 
         record = measurement
+
+        if "No temperature data in scan" in record:
+            continue
+
         record = cutstring("Signal", record)
         record = cutstring("Data:", record)
         record = cutstring("No thermometers found", record)
@@ -205,7 +205,7 @@ def massagerawdata(filename, dataItem, headerOnly, itemsRequired):
         datalist.append(datapoint)
 
     print(parametermeanings[dataItem - 1], "at locations")
-    print("\t\t\t", loc)
+    print("\t\t", loc)
 
     if not headerOnly:
         itemsRequired = min(itemsRequired, len(datalist))
