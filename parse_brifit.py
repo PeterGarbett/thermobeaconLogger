@@ -53,6 +53,9 @@ def findlocs(locdata):
     # not leaving it alone screws up. I lose the date info.
     # I don't understand that.
 
+    #   NOTE: 'I should be working on a copy of the data' isn't how it works.
+    #   Read https://nedbatchelder.com/text/names.html
+
     loc = list(locations)
     for index, bori in enumerate(loc):
         loc[index] = loc[index].replace("'", "")

@@ -166,7 +166,7 @@ def collect_data(controllerMAC):
         # 	uncommenting this line gives useful debug output for
         # 	monitoring progress of bluetoothctl
 
-        #child.logfile = sys.stdout
+        # child.logfile = sys.stdout
         child.expect("Agent registered")
         result = child.readline()
         child.expect("#")
