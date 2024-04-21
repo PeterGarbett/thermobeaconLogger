@@ -1,0 +1,12 @@
+#!/bin/bash
+
+virtualenv .
+
+source bin/activate
+
+pip install pexpect
+pip install numpy
+
+
+
+

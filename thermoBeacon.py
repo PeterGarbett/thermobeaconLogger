@@ -43,7 +43,7 @@ import datetime
 
 home_directory = "/home/embed/thermobeaconLogger"
 
-loadTestData = True
+loadTestData = False
 dataLoadFile = home_directory + "/rawBTdata.pk"
 saveTestData = False
 dataDumpFile = home_directory + "/rawBTdata.pk"
