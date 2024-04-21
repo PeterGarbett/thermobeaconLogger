@@ -6,7 +6,7 @@
 
 tmp=$(mktemp)
 
-tail /home/peter/tempBT.txt > $tmp
+tail /home/embed/tempBT.txt > $tmp
 
 parse_brifit.py $tmp  1 1
 rm $tmp

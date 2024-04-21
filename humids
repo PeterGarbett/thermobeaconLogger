@@ -4,4 +4,4 @@
 # Rather wastefull but the delay is acceptable 
 #
 
-parse_brifit.py /home/peter/tempBT.txt 2 1
+parse_brifit.py /home/embed/tempBT.txt 2 1

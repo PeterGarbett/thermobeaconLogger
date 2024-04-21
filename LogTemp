@@ -1,7 +1,0 @@
-#!/bin/bash 
-
-# This is the file I get cron to run every half hour
-# You may well want to change this
-
-
-logBT >> /home/peter/tempBT.txt

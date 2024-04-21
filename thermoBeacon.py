@@ -1,4 +1,5 @@
-#!/usr/bin/python3
+"""
+
 #
 #   	Peter Garbett Jan 2023
 #
@@ -22,13 +23,17 @@
 #  running as root or preferably being in group lp works
 #  You may well think alternatives are more to your liking
 
+"""
+
 import pexpect
+import numpy
+from numpy import mean
 import time
 import statistics
 import pickle
 import sys
 import vpd_calc
-from numpy import mean
+import datetime
 
 #   Debugging facility: save and restore sensor data
 #   replay and debug by loading it by changing flags
@@ -36,9 +41,9 @@ from numpy import mean
 #   Quick and reproducible
 
 
-home_directory = "/home/peter/thermobeacon"
+home_directory = "/home/embed/thermobeaconLogger"
 
-loadTestData = False
+loadTestData = True
 dataLoadFile = home_directory + "/rawBTdata.pk"
 saveTestData = False
 dataDumpFile = home_directory + "/rawBTdata.pk"
@@ -558,7 +563,8 @@ def main():
     #  for each sensor report
     # Sensor,temperature,humidity,vpd,dew pt,heat index,Battery voltage
 
-    print("Data:", sorted(results))
+    when = datetime.datetime.now()
+    print(when, " Data:", sorted(results))
 
 
 # 	The usual entry point stuff...
