@@ -9,7 +9,7 @@ Wants=BTtemps.timer
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/LogTemp
+ExecStart=/home/embed/logBT
 
 [Install]
 WantedBy=multi-user.target
