@@ -10,6 +10,7 @@ Wants=BTtemps.timer
 [Service]
 Type=oneshot
 ExecStart=/home/embed/thermobeaconLogger/logBT
+User=embed
 
 [Install]
 WantedBy=multi-user.target
