@@ -469,7 +469,7 @@ def main():
         if times != []:
             midpoint = statistics.median(times)
         else:
-            midpoint = 0.0  # if no data the midpoint is arbitrary
+            continue    # Avoid undefined value for times
 
         #   These are quite wide limits. one might expect scantime/2.0
         #   The behaviour of this code
