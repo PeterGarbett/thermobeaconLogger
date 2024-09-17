@@ -177,10 +177,15 @@ def massagerawdata(filename, dataItem, headerOnly, itemsRequired):
         record = cutstring("Signal", record)
         record = cutstring("Data:", record)
         record = cutstring("No thermometers found", record)
+        
+        #record = record.replace(" ","")
 
-        # All that should be left is the date
+    # All that should be left is the date
 
-        DATE = parser.parse(record)
+        try:
+            DATE = parser.parse(record)
+        except Exception as err:
+             continue
 
         delimiter = "Data:"
         if delimiter in measurement:
