@@ -87,7 +87,7 @@ def output(graph):
 
         #   Format depending on how many items we find
         #
-        outstr = ""
+        outstr = " " # Separate from date
         for number in range(len(item) - 1):
             if number == 0:
                 outstr = outstr + flttofixed(item[number + 1])
