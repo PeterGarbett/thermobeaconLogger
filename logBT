@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-/home/embed/thermobeaconLogger/bin/python3 /home/embed/thermobeaconLogger/thermoBeacon.py > /home/embed/tempBT.txt
+/home/embed/thermobeaconLogger/bin/python3 /home/embed/thermobeaconLogger/thermoBeacon.py >> /home/embed/tempBT.txt
 
 # The date string you get is rather obviously at the end of the
 # sampling period
