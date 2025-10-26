@@ -8,7 +8,7 @@ tmp=$(mktemp)
 
 tail /home/embed/tempBT.txt > $tmp
 
-parse_brifit.py $tmp  1 1
+/home/embed/thermobeaconLogger/bin/python /home/embed/thermobeaconLogger/parse_brifit.py $tmp  1 1
 rm $tmp
 
 
