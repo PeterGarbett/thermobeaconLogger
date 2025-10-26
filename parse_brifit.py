@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 #
 # 	Take the raw data log
 # 	and get date temp/humidity etc data by location
